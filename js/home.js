@@ -1,6 +1,6 @@
 // Cargar los Pokémon desde la API
 async function loadPokemon () {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=12');
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=20');
     const data = await response.json();
     const pokemonContainer = document.getElementById('pokemon-container');
 
@@ -14,7 +14,10 @@ async function loadPokemon () {
             <h3>${data.name}</h3>
             <p>Tipo: ${data.types[0].type.name}</p>
             <p>Valor: $<span class="pokemon-value">${calculatePokemonValue(data)}</span></p>
-            <button onclick="addToCart('${data.name}', ${calculatePokemonValue(data)})">Agregar al carrito</button>
+            <button onclick="addToCart('${data.name}', ${calculatePokemonValue(data)})" type="button" class="button">
+            <span class="button__text">Agregar</span>
+            <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+            </button>
         `;
         pokemonContainer.appendChild(pokemonCard);
     });
@@ -46,7 +49,10 @@ const cartItemsMap = new Map();
 // Abrir el modal del carrito
 function openCartModal () {
     const cartModal = document.getElementById('cart-modal');
-    cartModal.style.display = 'block';
+    cartModal.style.display = 'flex';
+    setTimeout(function () {
+        cartModal.classList.add('active');
+    }, 50);
 
     // Agrega un evento de clic al fondo oscuro del modal
     cartModal.addEventListener('click', function (event) {
@@ -59,7 +65,10 @@ function openCartModal () {
 // Cerrar el modal del carrito
 function closeCartModal () {
     const cartModal = document.getElementById('cart-modal');
-    cartModal.style.display = 'none';
+    cartModal.classList.remove('active');
+    setTimeout(function () {
+        cartModal.style.display = 'none';
+    }, 500);
 }
 
 // Agregar un Pokémon al carrito

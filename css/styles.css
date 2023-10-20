@@ -1,38 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: Arial, sans-serif;
+    font-family: 'Rubik', sans-serif;
     margin: 0;
     padding: 20px;
     max-width: 1000px;
     margin: auto;
+    background-color: #186F65;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' %3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%23B5CB99'/%3E%3Cstop offset='1' stop-color='%23FCE09B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpattern id='b' width='24' height='24' patternUnits='userSpaceOnUse'%3E%3Ccircle fill='%23186F65' cx='12' cy='12' r='12'/%3E%3C/pattern%3E%3Crect width='100%25' height='100%25' fill='url(%23a)'/%3E%3Crect width='100%25' height='100%25' fill='url(%23b)' fill-opacity='0.1'/%3E%3C/svg%3E");
+    background-attachment: fixed;
 }
 
 h1 {
     text-align: center;
+    color: #2c2c2c;
+    font-size: 1.5rem;
+}
+
+@media screen and (min-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
 }
 
 .top {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    margin-bottom: 1rem;
+}
+
+@media screen and (min-width: 770px) {
+    .top {
+        flex-direction: row;
+        justify-items: center;
+    }
+}
+
+
+.pokemon-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+@media screen and (min-width: 600px) {
+    .pokemon-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+    }
+}
+
+@media screen and (min-width: 770px) {
+    .pokemon-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-items: center;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .pokemon-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        justify-items: center;
+    }
 }
 
 .pokemon-card {
-    border: 1px solid #ddd;
     padding: 10px;
     margin: 10px;
     width: 200px;
     float: left;
     text-align: center;
     text-transform: capitalize;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(112, 120, 138, 0.60);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
 h3 {
-    text-transform: capitalize;
+    text-transform: uppercase;
+    color: #383838;
 }
 
 .pokemon-card img {
@@ -59,9 +116,21 @@ h3 {
 
 .cart-item {
     display: flex;
+    position: relative;
     justify-content: space-between;
     margin-bottom: 10px;
     text-transform: capitalize;
+}
+
+.modal-content p {
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.remove-btn {
+    position: absolute;
+    left: 50%;
 }
 
 #cart-total {
@@ -77,15 +146,32 @@ h3 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
 }
 
 .modal-content {
-    background-color: #fff;
-    margin: 15% auto;
+    display: block;
     padding: 20px;
-    border: 1px solid #888;
     width: 80%;
     max-width: 400px;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    background-color: #77aa77;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1'%3E%3Cstop offset='0' stop-color='%2377aa77'/%3E%3Cstop offset='1' stop-color='%234fd'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2'%3E%3Cstop offset='0' stop-color='%23cf8' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23cf8' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: cover;
+    transition: transform 0.5s;
+    transform: scale(0);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal.active .modal-content {
+    transform: scale(1);
 }
 
 .close-button {
@@ -96,16 +182,105 @@ h3 {
     cursor: pointer;
 }
 
-/* Estilos para el botón de abrir el carrito */
 .cart-button {
-    background-color: #4CAF50;
+    background-color: #186F65;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     float: right;
+    width: 150px;
 }
 
 .cart-button:hover {
     background-color: #45a049;
+}
+
+.button {
+    position: relative;
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 1px solid #34974d;
+    background-color: #3aa856;
+    margin: auto;
+}
+
+.button,
+.button__icon,
+.button__text {
+    transition: all 0.3s;
+}
+
+.button .button__text {
+    transform: translateX(30px);
+    color: #fff;
+    font-weight: 600;
+}
+
+.button .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 34px;
+    background-color: #186F65;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button .svg {
+    width: 30px;
+    stroke: #fff;
+}
+
+.button:hover {
+    background: #34974d;
+}
+
+.button:hover .button__text {
+    color: transparent;
+}
+
+.button:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+}
+
+.button:active .button__icon {
+    background-color: #45a75d;
+}
+
+.button:active {
+    border: 1px solid #2e8644;
+}
+
+#open-cart-button {
+    padding: 1.3em 3em;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+#open-cart-button:hover {
+    background-color: #2e8644;
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+#open-cart-button:active {
+    transform: translateY(-1px);
 }
